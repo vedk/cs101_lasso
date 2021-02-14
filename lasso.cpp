@@ -29,7 +29,7 @@ void Lasso::initLasso()
 	addPart(&lasso_circle);
 	addPart(&lasso_loop);
 	lasso_looped = false;
-	the_coin = NULL;
+	the_coin = nullptr;
 	num_coins = 0;
 
 	lasso_line.reset(lasso_start_x, lasso_start_y, lasso_start_x, lasso_start_y);
@@ -47,9 +47,12 @@ void Lasso::yank()
 	lasso_loop.reset(lasso_start_x, lasso_start_y, LASSO_SIZE / 2);
 	lasso_loop.setFill(true);
 	lasso_looped = false;
-	if (the_coin != NULL) {
+	if (the_coin != nullptr) {
 		num_coins++;
 		the_coin->resetCoin();
+		the_coin = nullptr;
+	} else {
+		lives_left--;
 	}
 }
 
@@ -99,7 +102,7 @@ void Lasso::nextStep(double stepTime)
 	lasso_line.reset(lasso_start_x, lasso_start_y, getXPos(), getYPos());
 }
 
-void Lasso::check_for_coin(Coin * coinPtr)
+void Lasso::check_for_coin(Coin *coinPtr)
 {
 	double lasso_x = getXPos();
 	double lasso_y = getYPos();
@@ -112,4 +115,20 @@ void Lasso::check_for_coin(Coin * coinPtr)
 		the_coin = coinPtr;
 		the_coin->getAttachedTo(this);
 	}
+}
+
+int Lasso::getLivesLeft() {
+	return lives_left;
+}
+
+void Lasso::setLivesLeft(int n) {
+	lives_left = n;
+}
+
+bool Lasso::coinCaught()
+{
+	if (the_coin == nullptr)
+		return false;
+	else
+		return true;
 }

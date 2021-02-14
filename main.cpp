@@ -6,7 +6,7 @@
 
 using namespace simplecpp;
 
-main_program {
+int main() {
 
 	initCanvas("Lasso", WINDOW_X, WINDOW_Y);
 	int stepCount = 0;
@@ -21,8 +21,7 @@ main_program {
 	double lasso_ay = LASSO_G;
 	bool paused = true;
 	bool rtheta = true;
-	Lasso lasso(release_speed, release_angle_deg, lasso_ax, lasso_ay,
-		    paused, rtheta);
+	Lasso lasso(release_speed, release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
 
 	Line b1(0, PLAY_Y_HEIGHT, WINDOW_X, PLAY_Y_HEIGHT);
 	b1.setColor(COLOR("blue"));
@@ -31,6 +30,10 @@ main_program {
 
 	string msg("Cmd: _");
 	Text charPressed(PLAY_X_START + 50, PLAY_Y_HEIGHT + 20, msg);
+
+	string str_lives_left("Lives Left: " + to_string(lasso.getLivesLeft()));
+	Text txtLivesLeft(PLAY_X_START + 50, PLAY_Y_HEIGHT + 80, str_lives_left);
+
 	char coinScoreStr[256];
 	sprintf(coinScoreStr, "Coins: %d", lasso.getNumCoins());
 	Text coinScore(PLAY_X_START + 50, PLAY_Y_HEIGHT + 50, coinScoreStr);
@@ -52,7 +55,7 @@ main_program {
 	// When l is pressed, loop lasso
 	// When q is pressed, quit
 
-	for (;;) {
+	while(true) {
 		if ((runTime > 0) && (currTime > runTime)) {
 			break;
 		}
@@ -122,10 +125,13 @@ main_program {
 		sprintf(coinScoreStr, "Coins: %d", lasso.getNumCoins());
 		coinScore.setMessage(coinScoreStr);
 
+		str_lives_left = "Lives Left: " + to_string(lasso.getLivesLeft());
+		txtLivesLeft.setMessage(str_lives_left);
+
 		stepCount++;
 		currTime += stepTime;
 		wait(stepTime);
-	}			// End for(;;)
+	} // end while(true)
 
-	wait(3);
-}				// End main_program
+	return 0;
+}

@@ -44,7 +44,7 @@ void MovingObject::reset_all(double argx, double argy, double speed, double angl
 	paused = argpaused;
 }
 
-void MovingObject::getAttachedTo(MovingObject * m)
+void MovingObject::getAttachedTo(MovingObject *m)
 {
 	double xpos = m->getXPos();
 	double ypos = m->getYPos();

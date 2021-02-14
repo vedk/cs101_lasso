@@ -66,12 +66,12 @@ public:
 		return paused;
 	}
 
-	void addPart(Sprite * p) {
+	void addPart(Sprite *p) {
 		parts.push_back(p);
 	}
-	
+
 	void nextStep(double t);
-	void getAttachedTo(MovingObject * m);
+	void getAttachedTo(MovingObject *m);
 };
 
 #endif

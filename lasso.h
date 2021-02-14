@@ -40,8 +40,11 @@
 #define COIN_G 30
 
 #define LASSO_SIZE 10
-#define LASSO_RADIUS 50
+#define LASSO_RADIUS 100
 #define COIN_SIZE 5
+
+// Additions by me
+#define N_LIVES 3
 
 class Lasso : public MovingObject {
 	double lasso_start_x;
@@ -63,14 +66,18 @@ class Lasso : public MovingObject {
 	bool lasso_looped;
 	Coin *the_coin;
 	int num_coins;
+	unsigned int lives_left;
 
 	void initLasso();
+ 
  public:
-	 Lasso(double speed, double angle_deg, double argax, double argay, bool argpaused, bool rtheta):MovingObject(speed, angle_deg, argax, argay, argpaused, rtheta) {
+ 	Lasso(double speed, double angle_deg, double argax, double argay, bool argpaused, bool rtheta) : MovingObject(speed, angle_deg, argax, argay, argpaused, rtheta) {
 		release_speed = speed;
 		release_angle_deg = angle_deg;
 		lasso_ax = argax;
 		lasso_ay = argay;
+		lives_left = N_LIVES;
+		the_coin = nullptr;
 		initLasso();
 	}
 
@@ -87,6 +94,10 @@ class Lasso : public MovingObject {
 		return num_coins;
 	}
 
-};				// End class Lasso
+	int getLivesLeft();
+	void setLivesLeft(int n);
+
+	bool coinCaught();
+};
 
 #endif
