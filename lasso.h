@@ -43,7 +43,7 @@
 #define LASSO_RADIUS 50
 #define COIN_SIZE 5
 
-class Lasso:public MovingObject {
+class Lasso : public MovingObject {
 	double lasso_start_x;
 	double lasso_start_y;
 	double release_speed;
@@ -66,16 +66,15 @@ class Lasso:public MovingObject {
 
 	void initLasso();
  public:
-	 Lasso(double speed, double angle_deg, double argax, double argay,
-	       bool argpaused, bool rtheta):MovingObject(speed, angle_deg,
-							 argax, argay,
-							 argpaused, rtheta) {
+	 Lasso(double speed, double angle_deg, double argax, double argay, bool argpaused, bool rtheta):MovingObject(speed, angle_deg, argax, argay, argpaused, rtheta) {
 		release_speed = speed;
 		release_angle_deg = angle_deg;
 		lasso_ax = argax;
 		lasso_ay = argay;
 		initLasso();
-	} void draw_lasso_band();
+	}
+
+	void draw_lasso_band();
 	void yank();
 	void loopit();
 	void addAngle(double angle_deg);
@@ -83,6 +82,7 @@ class Lasso:public MovingObject {
 
 	void nextStep(double t);
 	void check_for_coin(Coin * coin);
+	
 	int getNumCoins() {
 		return num_coins;
 	}

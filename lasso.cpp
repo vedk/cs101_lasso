@@ -6,17 +6,15 @@
 
 using namespace simplecpp;
 
-void
- Lasso::draw_lasso_band()
+void Lasso::draw_lasso_band()
 {
 	double len = (release_speed / MAX_RELEASE_SPEED) * LASSO_BAND_LENGTH;
 	double arad = release_angle_deg * PI / 180.0;
 	double xlen = len * cos(arad);
 	double ylen = len * sin(arad);
-	lasso_band.reset(lasso_start_x, lasso_start_y, (lasso_start_x - xlen),
-			 (lasso_start_y + ylen));
+	lasso_band.reset(lasso_start_x, lasso_start_y, (lasso_start_x - xlen), (lasso_start_y + ylen));
 	lasso_band.setThickness(LASSO_THICKNESS);
-}				// End Lasso::draw_lasso_band()
+}
 
 void Lasso::initLasso()
 {
@@ -34,20 +32,18 @@ void Lasso::initLasso()
 	the_coin = NULL;
 	num_coins = 0;
 
-	lasso_line.reset(lasso_start_x, lasso_start_y, lasso_start_x,
-			 lasso_start_y);
+	lasso_line.reset(lasso_start_x, lasso_start_y, lasso_start_x, lasso_start_y);
 	lasso_line.setColor(COLOR("brown"));
 
 	lasso_band.setColor(COLOR("BlueViolet"));
 	draw_lasso_band();
 
-}				// End Lasso::initLasso()
+}
 
 void Lasso::yank()
 {
 	bool paused = true, rtheta = true;
-	reset_all(lasso_start_x, lasso_start_y, release_speed,
-		  release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
+	reset_all(lasso_start_x, lasso_start_y, release_speed, release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
 	lasso_loop.reset(lasso_start_x, lasso_start_y, LASSO_SIZE / 2);
 	lasso_loop.setFill(true);
 	lasso_looped = false;
@@ -55,7 +51,7 @@ void Lasso::yank()
 		num_coins++;
 		the_coin->resetCoin();
 	}
-}				// End Lasso::yank()
+}
 
 void Lasso::loopit()
 {
@@ -65,7 +61,7 @@ void Lasso::loopit()
 	lasso_loop.reset(getXPos(), getYPos(), LASSO_RADIUS);
 	lasso_loop.setFill(false);
 	lasso_looped = true;
-}				// End Lasso::loopit()
+}
 
 void Lasso::addAngle(double angle_deg)
 {
@@ -77,9 +73,8 @@ void Lasso::addAngle(double angle_deg)
 		release_angle_deg = MAX_RELEASE_ANGLE_DEG;
 	}
 	bool paused = true, rtheta = true;
-	reset_all(lasso_start_x, lasso_start_y, release_speed,
-		  release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
-}				// End Lasso::addAngle()
+	reset_all(lasso_start_x, lasso_start_y, release_speed, release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
+}
 
 void Lasso::addSpeed(double speed)
 {
@@ -91,9 +86,8 @@ void Lasso::addSpeed(double speed)
 		release_speed = MAX_RELEASE_SPEED;
 	}
 	bool paused = true, rtheta = true;
-	reset_all(lasso_start_x, lasso_start_y, release_speed,
-		  release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
-}				// End Lasso::addSpeed()
+	reset_all(lasso_start_x, lasso_start_y, release_speed, release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
+}
 
 void Lasso::nextStep(double stepTime)
 {
@@ -103,7 +97,7 @@ void Lasso::nextStep(double stepTime)
 		yank();
 	}
 	lasso_line.reset(lasso_start_x, lasso_start_y, getXPos(), getYPos());
-}				// End Lasso::nextStep()
+}
 
 void Lasso::check_for_coin(Coin * coinPtr)
 {
@@ -118,4 +112,4 @@ void Lasso::check_for_coin(Coin * coinPtr)
 		the_coin = coinPtr;
 		the_coin->getAttachedTo(this);
 	}
-}				// End Lasso::check_for_coin()
+}

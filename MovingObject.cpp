@@ -3,8 +3,7 @@
 
 using namespace simplecpp;
 
-void
- MovingObject::nextStep(double t)
+void MovingObject::nextStep(double t)
 {
 	if (paused) {
 		return;
@@ -18,7 +17,7 @@ void
 	}
 	vx += ax * t;
 	vy += ay * t;
-}				// End MovingObject::nextStep()
+}
 
 double MovingObject::getXPos()
 {
@@ -30,9 +29,7 @@ double MovingObject::getYPos()
 	return (parts.size() > 0) ? parts[0]->getY() : -1;
 }
 
-void MovingObject::reset_all(double argx, double argy, double speed,
-			     double angle_deg, double argax, double argay,
-			     bool argpaused, bool rtheta)
+void MovingObject::reset_all(double argx, double argy, double speed, double angle_deg, double argax, double argay, bool argpaused, bool rtheta)
 {
 	for (size_t i = 0; i < parts.size(); i++) {
 		parts[i]->moveTo(argx, argy);
@@ -45,7 +42,7 @@ void MovingObject::reset_all(double argx, double argy, double speed,
 	ax = argax;
 	ay = argay;
 	paused = argpaused;
-}				// End MovingObject::reset_all()
+}
 
 void MovingObject::getAttachedTo(MovingObject * m)
 {

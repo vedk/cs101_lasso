@@ -1,8 +1,7 @@
 #include "coin.h"
 #include "lasso.h"
 
-void
- Coin::initCoin()
+void Coin::initCoin()
 {
 	coin_start_x = (PLAY_X_START + WINDOW_X) / 2;
 	coin_start_y = PLAY_Y_HEIGHT;
@@ -19,6 +18,5 @@ void Coin::resetCoin()
 	coin_ax = 0;
 	coin_ay = COIN_G;
 	bool paused = true, rtheta = true;
-	reset_all(coin_start_x, coin_start_y, coin_speed, coin_angle_deg,
-		  coin_ax, coin_ay, paused, rtheta);
+	reset_all(coin_start_x, coin_start_y, coin_speed, coin_angle_deg, coin_ax, coin_ay, paused, rtheta);
 }
