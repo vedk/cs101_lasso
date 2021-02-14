@@ -40,6 +40,14 @@ void Lasso::initLasso()
 
 }
 
+/**
+ * This function is called in two circumstances:
+ * - When the user presses 'y' key.
+ * OR
+ * - When the lasso falls on the ground (both with or without coin)
+ *
+ * This function also counts the lives remaining for the lasso.
+ */
 void Lasso::yank()
 {
 	bool paused = true, rtheta = true;
@@ -47,6 +55,7 @@ void Lasso::yank()
 	lasso_loop.reset(lasso_start_x, lasso_start_y, LASSO_SIZE / 2);
 	lasso_loop.setFill(true);
 	lasso_looped = false;
+	
 	if (the_coin != nullptr) {
 		num_coins++;
 		the_coin->resetCoin();
@@ -125,6 +134,9 @@ void Lasso::setLivesLeft(int n) {
 	lives_left = n;
 }
 
+/**
+ * Lasso::yank() always sets Lasso::the_coin pointer to nullptr when the lasso falls on the ground.
+ */
 bool Lasso::coinCaught()
 {
 	if (the_coin == nullptr)
