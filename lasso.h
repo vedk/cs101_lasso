@@ -43,47 +43,50 @@
 #define LASSO_RADIUS 50
 #define COIN_SIZE 5
 
-class Lasso : public MovingObject {
-  double lasso_start_x;
-  double lasso_start_y;
-  double release_speed;
-  double release_angle_deg;
-  double lasso_ax;
-  double lasso_ay;
+class Lasso:public MovingObject {
+	double lasso_start_x;
+	double lasso_start_y;
+	double release_speed;
+	double release_angle_deg;
+	double lasso_ax;
+	double lasso_ay;
 
-  // Moving parts
-  Circle lasso_circle;
-  Circle lasso_loop;
+	// Moving parts
+	Circle lasso_circle;
+	Circle lasso_loop;
 
-  // Non-moving parts
-  Line lasso_line;
-  Line lasso_band;
+	// Non-moving parts
+	Line lasso_line;
+	Line lasso_band;
 
-  // State info
-  bool lasso_looped;
-  Coin *the_coin;
-  int num_coins;
+	// State info
+	bool lasso_looped;
+	Coin *the_coin;
+	int num_coins;
 
-  void initLasso();
+	void initLasso();
  public:
- Lasso(double speed, double angle_deg, double argax, double argay, bool argpaused, bool rtheta) : MovingObject(speed, angle_deg, argax, argay, argpaused, rtheta) {
-    release_speed = speed;
-    release_angle_deg = angle_deg;
-    lasso_ax = argax;
-    lasso_ay = argay;
-    initLasso();
-  }
+	 Lasso(double speed, double angle_deg, double argax, double argay,
+	       bool argpaused, bool rtheta):MovingObject(speed, angle_deg,
+							 argax, argay,
+							 argpaused, rtheta) {
+		release_speed = speed;
+		release_angle_deg = angle_deg;
+		lasso_ax = argax;
+		lasso_ay = argay;
+		initLasso();
+	} void draw_lasso_band();
+	void yank();
+	void loopit();
+	void addAngle(double angle_deg);
+	void addSpeed(double speed);
 
-  void draw_lasso_band();
-  void yank();
-  void loopit();
-  void addAngle(double angle_deg);
-  void addSpeed(double speed);
+	void nextStep(double t);
+	void check_for_coin(Coin * coin);
+	int getNumCoins() {
+		return num_coins;
+	}
 
-  void nextStep(double t);
-  void check_for_coin(Coin *coin);
-  int getNumCoins() { return num_coins; }
-
-}; // End class Lasso
+};				// End class Lasso
 
 #endif
