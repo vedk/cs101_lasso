@@ -95,6 +95,9 @@ main_program {
 					lasso.addSpeed(+RELEASE_SPEED_STEP);
 				}
 				break;
+			case 'h':
+				//TODO: add a help screen
+				break;
 			case 'q':
 				exit(0);
 			default:
