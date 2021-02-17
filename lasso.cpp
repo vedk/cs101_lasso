@@ -57,7 +57,16 @@ void Lasso::yank()
 	lasso_looped = false;
 	
 	if (the_coin != nullptr) {
-		num_coins++;
+		if (the_coin->isPoison()) {
+			if (lives_left > 1)
+				lives_left--;
+			else {
+				cout << "Game Over! You lost all lives.\n";
+				exit(EXIT_SUCCESS);
+			}
+		} else {
+			num_coins++;
+		}
 		the_coin->resetCoin();
 		the_coin = nullptr;
 	} else {

@@ -4,9 +4,13 @@
 #include "lasso.h"
 #include "coin.h"
 
+#include <ctime>
+
 using namespace simplecpp;
 
 int main() {
+
+	srand(time(NULL));
 
 	initCanvas("Lasso", WINDOW_X, WINDOW_Y);
 	int stepCount = 0;
@@ -122,9 +126,11 @@ int main() {
 			last_coin_jump_end = currTime;
 		}
 
+		// update number of coins collected
 		sprintf(coinScoreStr, "Coins: %d", lasso.getNumCoins());
 		coinScore.setMessage(coinScoreStr);
 
+		// update number of lives left
 		str_lives_left = "Lives Left: " + to_string(lasso.getLivesLeft());
 		txtLivesLeft.setMessage(str_lives_left);
 
