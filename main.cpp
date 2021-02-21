@@ -3,6 +3,7 @@
 #include "MovingObject.h"
 #include "lasso.h"
 #include "coin.h"
+#include "HighScoreDb.h"
 
 #include <ctime>
 
@@ -25,6 +26,10 @@ int main() {
 	double lasso_ay = LASSO_G;
 	bool paused = true;
 	bool rtheta = true;
+
+	HighScoreDb hsdb;
+	cout << "High Score = " << hsdb.getHighScore() << endl;
+
 	Lasso lasso(release_speed, release_angle_deg, lasso_ax, lasso_ay, paused, rtheta);
 
 	Line b1(0, PLAY_Y_HEIGHT, WINDOW_X, PLAY_Y_HEIGHT);
@@ -37,6 +42,9 @@ int main() {
 
 	string str_lives_left("Lives Left: " + to_string(lasso.getLivesLeft()));
 	Text txtLivesLeft(PLAY_X_START + 50, PLAY_Y_HEIGHT + 80, str_lives_left);
+
+	string str_hs("High Score: " + to_string(hsdb.getHighScore()));
+	Text txtHighScore(PLAY_X_START + 150, PLAY_Y_HEIGHT + 80, str_hs);
 
 	char coinScoreStr[256];
 	sprintf(coinScoreStr, "Coins: %d", lasso.getNumCoins());
@@ -124,6 +132,13 @@ int main() {
 		if (coin.getYPos() > PLAY_Y_HEIGHT) {
 			coin.resetCoin();
 			last_coin_jump_end = currTime;
+		}
+
+		if (lasso.getNumCoins() > hsdb.getHighScore())
+		{
+			hsdb.setHighScore(lasso.getNumCoins());
+			hsdb.writeToDisk();
+			txtHighScore.setMessage("High Score: " + to_string(hsdb.getHighScore()));
 		}
 
 		// update number of coins collected
