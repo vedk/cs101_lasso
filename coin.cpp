@@ -26,6 +26,7 @@ void Coin::resetCoin()
 	coin_ay = COIN_G;
 	bool paused = true, rtheta = true;
 
+	// decide the colour of coin at random
 	if (rand() % 2)
 		is_poison = true;
 	else
@@ -33,7 +34,7 @@ void Coin::resetCoin()
 
 	if (is_poison)
 		coin_circle.setColor(COLOR("red"));
-	else 
+	else
 		coin_circle.setColor(COLOR("gold"));
 
 	reset_all(coin_start_x, coin_start_y, coin_speed, coin_angle_deg, coin_ax, coin_ay, paused, rtheta);

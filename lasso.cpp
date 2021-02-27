@@ -56,8 +56,8 @@ void Lasso::yank()
 	lasso_loop.setFill(true);
 	lasso_looped = false;
 	
-	if (the_coin != nullptr) {
-		if (the_coin->isPoison()) {
+	if (the_coin != nullptr) { // if caught coin...
+		if (the_coin->isPoison()) { // ...check if it is red or gold
 			if (lives_left > 1)
 				lives_left--;
 			else {
@@ -69,7 +69,7 @@ void Lasso::yank()
 		}
 		the_coin->resetCoin();
 		the_coin = nullptr;
-	} else {
+	} else { // coin was not caught
 		if (lives_left > 1)
 			lives_left--;
 		else {
@@ -83,7 +83,7 @@ void Lasso::loopit()
 {
 	if (lasso_looped) {
 		return;
-	}			// Already looped
+	} // Already looped
 	lasso_loop.reset(getXPos(), getYPos(), LASSO_RADIUS);
 	lasso_loop.setFill(false);
 	lasso_looped = true;

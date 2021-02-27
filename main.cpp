@@ -10,8 +10,7 @@
 using namespace simplecpp;
 
 int main() {
-
-	srand(time(NULL));
+	srand(time(NULL)); // seed the RNG
 
 	initCanvas("Lasso", WINDOW_X, WINDOW_Y);
 	int stepCount = 0;
@@ -27,6 +26,7 @@ int main() {
 	bool paused = true;
 	bool rtheta = true;
 
+	// The database (i.e. hs.dat file) which stores the highscore
 	HighScoreDb hsdb;
 	cout << "High Score = " << hsdb.getHighScore() << endl;
 
@@ -110,9 +110,6 @@ int main() {
 					lasso.addSpeed(+RELEASE_SPEED_STEP);
 				}
 				break;
-			case 'h':
-				//TODO: add a help screen
-				break;
 			case 'q':
 				exit(0);
 			default:
@@ -134,6 +131,7 @@ int main() {
 			last_coin_jump_end = currTime;
 		}
 
+		// Update the hs.dat file
 		if (lasso.getNumCoins() > hsdb.getHighScore())
 		{
 			hsdb.setHighScore(lasso.getNumCoins());
