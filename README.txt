@@ -5,14 +5,10 @@ CS101 Project for AA grade
 | Video Link: https://drive.google.com/file/d/1uSstKowdSxNZSMrUS9_bOQuHIFtXXGnC/view?usp=sharing |
 __________________________________________________________________________________________________
 
------------------------------------------------------
-| INCASE OF ANY DOUBTS CALL/WHATSAPP +91 7038108569 |
------------------------------------------------------
 
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 | Name   : Ved Mangesh Khandekar |
 | LDAP ID: 20d170019             |
-| Phone  : 7038108569            |
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
