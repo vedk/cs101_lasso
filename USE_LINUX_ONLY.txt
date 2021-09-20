@@ -3,5 +3,3 @@ This project is setup to run on LINUX ONLY. This project has not been tested nor
 See the README.txt file on instructions on how to compile the program.
 
 DON'T FORGET TO SET THE PATH TO THE s++ SHELL SCRIPT IN THE Makefile.
-
-INCASE OF ANY DOUBTS CALL/WHATSAPP "+91 7038108569" IMMEDIATELY.
